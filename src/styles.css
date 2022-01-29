@@ -1,0 +1,13 @@
+.App {
+  font-family: sans-serif;
+  text-align: left;
+  padding-left: 50px;
+}
+
+.submission{
+  font-style: bold;
+}
+
+.tab1 {
+  tab-size: 2;
+}
