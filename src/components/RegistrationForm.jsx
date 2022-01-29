@@ -1,6 +1,14 @@
 import { useState } from "react"
+import InputElement from "./InputElement"
 
 const RegistrationFrom = () => {
+    const [data, setData] = useState({
+        name: "name",
+        email: "email",
+        phone: "phone",
+        password: "password"
+    })
+
     const [name, setName] = useState("Name")
     const [email, setEmail] = useState("mail address")
     const [phone, setPhone] = useState("(000)-222-33-33")
@@ -8,7 +16,7 @@ const RegistrationFrom = () => {
     const [submission, setSubmision] = useState([])
 
     const handleOnChangeName = (e) => {
-        console.log("name is being changed",e.target.value)
+        console.log(e)
         setName(e.target.value)
     }
 
@@ -27,20 +35,20 @@ const RegistrationFrom = () => {
     const onSubmitHandler = (e) =>{
         e.preventDefault();
         console.log(e)
-        setSubmision([<div key={name}>{name} , {email} , {phone} , {password} </div>])
+        setSubmision(submission.concat([<div key={name}>{name} , {email} , {phone} , {password} </div>]))
         console.log(submission)
     }
     return (
         <form className="registration-from">
-             <p>name    : <input value={name}  onChange={handleOnChangeName}/></p>
-             <p>email    : <input value={email}  onChange={handleOnChangeEmail}/></p>
-             <p>phone    : <input value={phone}  onChange={handleOnChangePhone}/></p>
-             <p>password    : <input value={password}  onChange={handleOnChangePassword}/></p>
+            <InputElement type="name" value={name} onChange={handleOnChangeName}/>
+            <InputElement type="email" value={email} onChange={handleOnChangeEmail}/>
+            <InputElement type="tel" value={phone} onChange={handleOnChangePhone}/>
+            <InputElement type="password" value={password} onChange={handleOnChangePassword}/>
              <button type="submit" onClick={onSubmitHandler}>submit</button>
              <h1 className="submission-header">Submitted Data</h1>
-            <div className="submission">
+             <div className="submission">
                 {submission}
-            </div>
+             </div>
         </form>
     )
 }
